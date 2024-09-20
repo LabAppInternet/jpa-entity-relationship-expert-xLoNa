@@ -1,0 +1,73 @@
+###
+GET http://localhost:8080/users/Pere
+
+
+###
+GET http://localhost:8080/users/InexistentUser
+
+
+###
+GET http://localhost:8080/users/1/notes
+
+
+###
+POST http://localhost:8080/users/1/notes
+Content-Type: application/json
+
+{
+    "title": "Note 1",
+    "content": "Content of note 1",
+    "tags": ["Spring REST", "tag2"]
+}
+
+###
+GET http://localhost:8080/users/2/notesCanView/
+
+
+###
+GET http://localhost:8080/users/2/notesCanEdit/
+
+
+###
+POST http://localhost:8080/users/1/permissions
+Content-Type: application/json
+
+{
+    "allowedUserId": 2,
+    "noteId": 2,
+    "canEdit": false,
+    "canView": true
+}
+
+###
+POST http://localhost:8080/users/1/permissions
+Content-Type: application/json
+
+{
+  "allowedUserId": 2,
+  "noteId": 2,
+  "canEdit": true,
+  "canView": true
+}
+
+### user is not owner
+POST http://localhost:8080/users/2/permissions
+Content-Type: application/json
+
+{
+  "allowedUserId": 2,
+  "noteId": 1,
+  "canEdit": true,
+  "canView": true
+}
+
+
+###
+PUT http://localhost:8080/users/1/notes/66
+Content-Type: application/json
+
+{
+    "title": "Note 1.2",
+    "content": "Content of note 1.2",
+    "tags": ["Spring REST", "Spring Cloud", "tag2"]
+}
